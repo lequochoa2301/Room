@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add New Room</title>
+</head>
+<body>
+<h1>Add New Room</h1>
+
+<!-- Hiển thị thông báo lỗi -->
+<div th:if="${error}" style="color:red;">
+    <p th:text="${error}"></p>
+</div>
+
+<form action="#" th:action="@{/rooms}" th:object="${room}" method="post" enctype="multipart/form-data">
+    <label for="roomType">Room Type:</label>
+    <input type="text" id="roomType" th:field="*{roomType}" required/><br/> <!-- Đã thêm id -->
+
+    <label for="capacity">Capacity:</label>
+    <input type="number" id="capacity" th:field="*{capacity}" required/><br/> <!-- Đã thêm id -->
+
+    <label for="status">Status:</label>
+    <input type="text" id="status" th:field="*{status}" required/><br/> <!-- Đã thêm id -->
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" th:field="*{price}" step="0.01" required/><br/> <!-- Đã thêm id -->
+
+    <label for="photo">Photo:</label>
+    <input type="file" id="photo" name="photo" required/><br/> <!-- Đã thêm id và sử dụng name thay vì th:field -->
+
+    <button type="submit">Save Room</button>
+</form>
+<a href="/rooms">Back to Room List</a>
+</body>
+</html>

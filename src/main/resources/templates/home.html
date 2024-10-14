@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="mb-4">Room List</h1>
+
+    <a href="/rooms/new" class="btn btn-success mb-4">Add New Room</a>
+
+    <div class="row" th:each="room : ${rooms}">
+        <div class="col-md-4"> <!-- Change column size as needed -->
+            <div class="card mb-4" style="width: 100%;">
+                <img th:src="${room.photo != null} ? 'data:image/jpeg;base64,' + ${T(org.apache.commons.codec.binary.Base64).encodeBase64String(room.photo)} : '/path/to/default/image.jpg'"
+                     class="card-img-top" alt="Room Image">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${room.roomType}"></h5>
+                    <p class="card-text" th:text="'Capacity: ' + ${room.capacity}"></p>
+                    <p class="card-text" th:text="'Status: ' + ${room.status}"></p>
+                    <p class="card-text" th:text="'Price: $' + ${room.price}"></p>
+                    <div class="d-flex justify-content-between">
+                        <a th:href="@{/rooms/edit/{id}(id=${room.roomId})}" class="btn btn-warning">Edit</a>
+                        <a th:href="@{/rooms/delete/{id}(id=${room.roomId})}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
