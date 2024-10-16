@@ -3,22 +3,22 @@ package com.example.Room.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "rooms") // Đảm bảo tên bảng chính xác
+@Table(name = "rooms")
 public class Room {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roomId;
-    private String roomType;//loai phong
-    private int capacity; // Phong chua
-    private String status; //Tình trạng
-    private Double price; //gia ca
+
+    private String roomType; // loại phòng
+    private int capacity; // số người tối đa
+    private String status; // tình trạng phòng
+    private Double price; // giá cả
 
     @Lob
-    private byte[] photo;
+    private byte[] photo; // hình ảnh
 
-    public Room() {
-    }
-
+    // Getters and Setters
     public Long getRoomId() {
         return roomId;
     }
